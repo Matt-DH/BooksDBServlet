@@ -14,6 +14,6 @@
 
     <servlet-mapping>
         <servlet-name>libraryData</servlet-name>
-        <url-pattern>/test_post</url-pattern>
+        <url-pattern>/test_form</url-pattern>
     </servlet-mapping>
 </web-app>

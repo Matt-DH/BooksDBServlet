@@ -20,12 +20,11 @@ public class LibraryData extends HttpServlet {
     private String message;
     public void init() {
         message = "Library Servlet!";
-        ServletContext sc = this.getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         response.setContentType("text/html");
         System.out.println("TEST MSG: GET REQUEST RECEIVED");
         String view = request.getParameter("view");
@@ -58,6 +57,7 @@ public class LibraryData extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("TEST MSG: POST REQUEST RECEIVED");
+        //doRequestDispatcher(String.valueOf(request.getRequestURL()));
         String view = request.getParameter("view");
         if (view.equals("test_post")) {
             System.out.println("TEST MSG: VIEW EQUALS TEST_POST");
@@ -91,4 +91,11 @@ public class LibraryData extends HttpServlet {
 //        }
 
     }
+
+//    protected void doRequestDispatcher(String url) {
+//        ServletContext sc = this.getServletContext();
+//        RequestDispatcher rd = sc.getRequestDispatcher(url);
+//        rd.
+//    }
+
 }
