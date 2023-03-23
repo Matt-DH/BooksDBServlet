@@ -36,6 +36,8 @@ public class DBConfiguration {
 
     protected static final String DB_BOOKS_AUTHORISBN_TABLENAME = "authorisbn";
 
+    protected static final String WEBAPP_PAGES_DIR = "src/main/webapp/";
+
     /**
      * Register a driver using Java's Class.forName() method
      * to dynamically load the driver's class file into memory

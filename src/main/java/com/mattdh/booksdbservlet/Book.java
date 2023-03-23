@@ -29,7 +29,7 @@ public class Book {
         this.title = title;
         this.editionNumber = editionNumber;
         this.copyright = copyright;
-        authorList = new LinkedList<>();
+        this.authorList = new LinkedList<>();
     }
 
     // SETTERS
@@ -80,6 +80,17 @@ public class Book {
 
     public void addAuthor(Author author) {
         this.authorList.add(author);
+    }
+
+    public void printBookInformation(java.io.PrintStream out) {
+        out.println("ISBN: " + this.isbn);
+        out.println("Title: " + this.title);
+        out.println("Edition Number: " + this.editionNumber);
+        out.println("Copyright: " + this.copyright);
+        out.println("Authors: ");
+        for (Author author: this.authorList) {
+            author.printAuthorInformation(out);
+        }
     }
 
 }

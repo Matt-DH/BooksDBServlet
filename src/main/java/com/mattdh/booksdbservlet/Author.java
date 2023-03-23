@@ -71,4 +71,14 @@ public class Author {
         this.bookList.add(book);
     }
 
+    public void printAuthorInformation(java.io.PrintStream out) {
+        out.println("Author ID: " + this.authorID);
+        out.println("First Name: " + this.firstName);
+        out.println("Last Name: " + this.lastName);
+        out.println("Books:");
+        for (Book book: this.bookList) {
+            System.out.println("\t" + book.getTitle());
+        }
+    }
+
 }
