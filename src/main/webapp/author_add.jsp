@@ -14,11 +14,12 @@
 <h1 name="view" value="authorAdd"></h1>
 <h1>Add an author</h1>
 <form action="authors_add" method="post">
+    <input type="hidden" name="view" value="author_add">
     <label for="authorID">Author ID:</label><br>
     <input type="text" id="authorID" name="authorsAuthorID"><br>
-    <label for="firstName">Title:</label><br>
+    <label for="firstName">First Name:</label><br>
     <input type="text" id="firstName" name="authorsFirstName"><br>
-    <label for="lastName">Edition Number:</label><br>
+    <label for="lastName">Last Name:</label><br>
     <input type="text" id="lastName" name="authorsLastName"><br>
     <input type="submit" id="submit" value="SUBMIT">
 </form>

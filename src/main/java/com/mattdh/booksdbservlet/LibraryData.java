@@ -27,43 +27,44 @@ public class LibraryData extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String view = request.getParameter("view");
+        //String view = request.getParameter("view");
 
-        switch (view) {
+        Library library = BookDatabaseManager.loadLibrary();
 
-            case "authorView":
+        request.setAttribute("bookList", library.getBookList());
+        request.setAttribute("authorList", library.getAuthorList());
 
-
-                break;
-
-            case "bookView":
-                List<Book> bookList = null;
-                try {
-                    Library library = new Library();
-                    bookList = library.getBookList();
-                    RequestDispatcher rd = request.getRequestDispatcher("booksdbservlet/book_view.jsp");
-                    request.setAttribute("bookList", bookList);
-                    rd.forward(request, response);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                break;
-        }
-
+//        if (view.equals("author_view")) {
 //
+//            System.out.println("CASE: AUTHOR VIEW");
 //
-
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-
-        if (firstName == null || lastName == null || firstName.isEmpty() || lastName.isEmpty()) {
-            System.out.println("Something is wrong");
-        } else {
-            request.setAttribute("firstName", firstName);
-            request.setAttribute("lastName", lastName);
-        }
-
+//            try {
+//                List<Author> authorList = library.getAuthorList();
+//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("a2/viewallbooks.jsp");
+//                request.setAttribute("authorlist", authorList);
+//                requestDispatcher.forward(request, response);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//
+//        if (view.equals("book_view")) {
+//
+//            System.out.println("CASE: BOOK VIEW");
+//
+////                List<Book> bookList = null;
+////                try {
+////                    Library library = new Library();
+////                    bookList = library.getBookList();
+////                    RequestDispatcher rd = request.getRequestDispatcher("booksdbservlet/book_view.jsp");
+////                    request.setAttribute("bookList", bookList);
+////                    rd.forward(request, response);
+////                } catch (Exception e) {
+////                    e.printStackTrace();
+////                }
+//
+//        }
     }
 
 
@@ -75,7 +76,7 @@ public class LibraryData extends HttpServlet {
         String view = request.getParameter("view");
 
         switch(view) {
-            case "bookAdd":
+            case "book_add":
                 System.out.println("TEST MSG: VIEW = BOOK ADD");
 
                 int titlesAuthorID = Integer.valueOf(request.getParameter("titlesAuthorID"));
@@ -99,7 +100,7 @@ public class LibraryData extends HttpServlet {
                 }
                 break;
 
-            case "authorAdd":
+            case "author_add":
                 System.out.println("TEST MSG: VIEW = AUTHOR ADD");
 
                 int authorsAuthorID = Integer.valueOf(request.getParameter("authorsAuthorID"));

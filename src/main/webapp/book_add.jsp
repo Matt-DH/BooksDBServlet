@@ -14,6 +14,7 @@
 <h1 name="view" value="bookAdd"></h1>
 <h1>Add a book</h1>
 <form action="titles_add" method="post">
+    <input type="hidden" name="view" value="book_add">
     <label for="authorID">Author ID:</label>
     <input type="text" id="authorID" name="titlesAuthorID"><br>
     <label for="isbn">ISBN:</label><br>

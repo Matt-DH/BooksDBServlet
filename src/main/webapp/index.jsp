@@ -9,8 +9,8 @@
 </h1>
 <br/>
 <br/>
-<a href="bookAdd.jsp">Add a book</a>
-<a href="authorAdd.jsp">Add an author</a>
+<a href="book_add.jsp">Add a book</a>
+<a href="author_add.jsp">Add an author</a>
 <a href="book_view.jsp" >View all books</a>
 <a href="author_view.jsp">View all authors</a>
 </body>
