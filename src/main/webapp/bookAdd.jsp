@@ -11,6 +11,20 @@
     <title>Add a book</title>
 </head>
 <body>
-
+<h1 name="view" value="bookAdd"></h1>
+<h1>Add a book</h1>
+<form action="titles_add" method="post">
+    <label for="authorID">Author ID:</label>
+    <input type="text" id="authorID" name="titlesAuthorID"><br>
+    <label for="isbn">ISBN:</label><br>
+    <input type="text" id="isbn" name="titlesIsbn"><br>
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="titlesTitle"><br>
+    <label for="editionNum">Edition Number:</label><br>
+    <input type="text" id="editionNum" name="titlesEditionNum"><br>
+    <label for="copyright">Copyright:</label><br>
+    <input type="text" id="copyright" name="titlesCopyright"><br>
+    <input type="submit" id="submit" value="SUBMIT">
+</form>
 </body>
 </html>

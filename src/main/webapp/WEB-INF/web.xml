@@ -5,6 +5,10 @@
          version="5.0">
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
+        <welcome-file>authorAdd.jsp</welcome-file>
+        <welcome-file>authorView.jsp</welcome-file>
+        <welcome-file>bookAdd.jsp</welcome-file>
+        <welcome-file>bookView.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -14,6 +18,9 @@
 
     <servlet-mapping>
         <servlet-name>libraryData</servlet-name>
-        <url-pattern>/test_form</url-pattern>
+        <url-pattern>/titles_add</url-pattern>
+        <url-pattern>/authors_add</url-pattern>
+        <url-pattern>/book_view</url-pattern>
+        <url-pattern>/author_view</url-pattern>
     </servlet-mapping>
 </web-app>
