@@ -43,5 +43,7 @@ Book dump!
         }
     %>
 </table>
+<br>
+<a href="index.jsp">Return to home page</a>
 </body>
 </html>

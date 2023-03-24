@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>cool library</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
+<h1 style="color: deeppink">cool library website :)</h1>
 <br/>
 <br/>
 <a href="book_add.jsp">Add a book</a>

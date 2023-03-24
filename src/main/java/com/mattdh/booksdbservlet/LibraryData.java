@@ -26,16 +26,18 @@ public class LibraryData extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("TEST MSG: INSIDE DOGET");
+
         try {
             Class.forName(DBConfiguration.MARIA_DB_DRIVER_NAME);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
         response.setContentType("text/html");
         String view = request.getParameter("view");
         Library library = BookDatabaseManager.loadLibrary();
-
-        System.out.println("TEST MSG: INSIDE DOGET");
 
         if (view.equals("book_view")) {
             System.out.println("TEST MSG: INSIDE VIEW EQUALS BOOK");
@@ -54,62 +56,69 @@ public class LibraryData extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("TEST MSG: POST REQUEST RECEIVED");
+
         try {
             Class.forName(DBConfiguration.MARIA_DB_DRIVER_NAME);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        System.out.println("TEST MSG: POST REQUEST RECEIVED");
-
         String view = request.getParameter("view");
 
-        switch(view) {
-            case "book_add":
-                System.out.println("TEST MSG: VIEW = BOOK ADD");
+        if (view.equals("book_add")) {
+            System.out.println("TEST MSG: VIEW = BOOK ADD");
 
-                int titlesAuthorID = Integer.valueOf(request.getParameter("titlesAuthorID"));
-                String titlesIsbn = request.getParameter("titlesIsbn");
-                String titlesTitle = request.getParameter("titlesTitle");
-                int titlesEditionNumber = Integer.valueOf(request.getParameter("titlesEditionNum"));
-                String titlesCopyright = request.getParameter("titlesCopyright");
+            int titlesAuthorID = Integer.valueOf(request.getParameter("titlesAuthorID"));
+            String titlesIsbn = request.getParameter("titlesIsbn");
+            String titlesTitle = request.getParameter("titlesTitle");
+            int titlesEditionNumber = Integer.valueOf(request.getParameter("titlesEditionNum"));
+            String titlesCopyright = request.getParameter("titlesCopyright");
 
-                try {
-                    BookDatabaseManager.addBook(
-                            DBConfiguration.getBookDBConnection(),
-                            titlesAuthorID,
-                            titlesIsbn,
-                            titlesTitle,
-                            titlesEditionNumber,
-                            titlesCopyright
-                    );
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    //Navigate somewhere?
-                }
-                break;
+            try {
+                BookDatabaseManager.addBook(
+                        DBConfiguration.getBookDBConnection(),
+                        titlesAuthorID,
+                        titlesIsbn,
+                        titlesTitle,
+                        titlesEditionNumber,
+                        titlesCopyright
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+                //Navigate somewhere?
+            }
 
-            case "author_add":
-                System.out.println("TEST MSG: VIEW = AUTHOR ADD");
+            RequestDispatcher rdBookAdded = request.getRequestDispatcher("book_added.jsp");
+            rdBookAdded.forward(request, response);
 
-                int authorsAuthorID = Integer.valueOf(request.getParameter("authorsAuthorID"));
-                String authorsFirstName = request.getParameter("authorsFirstName");
-                String authorsLastName = request.getParameter("authorsLastName");
+        }
 
-                try {
-                    BookDatabaseManager.addAuthor(
-                            DBConfiguration.getBookDBConnection(),
-                            authorsAuthorID,
-                            authorsFirstName,
-                            authorsLastName
-                    );
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    //Navigate somewhere
-                }
+        if (view.equals("author_add")) {
+            System.out.println("TEST MSG: VIEW = AUTHOR ADD");
+
+            int authorsAuthorID = Integer.valueOf(request.getParameter("authorsAuthorID"));
+            String authorsFirstName = request.getParameter("authorsFirstName");
+            String authorsLastName = request.getParameter("authorsLastName");
+
+            try {
+                BookDatabaseManager.addAuthor(
+                        DBConfiguration.getBookDBConnection(),
+                        authorsAuthorID,
+                        authorsFirstName,
+                        authorsLastName
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+                //Navigate somewhere
+            }
+
+            RequestDispatcher rdAuthorAdded = request.getRequestDispatcher("author_added.jsp");
+            rdAuthorAdded.forward(request, response);
+
         }
     }
 }
