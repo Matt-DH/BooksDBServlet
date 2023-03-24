@@ -11,7 +11,7 @@
 <br/>
 <a href="book_add.jsp">Add a book</a>
 <a href="author_add.jsp">Add an author</a>
-<a href="book_view.jsp" >View all books</a>
-<a href="author_view.jsp">View all authors</a>
+<a href="library-data?view=book_view">View all books</a>
+<a href="library-data?view=author_view">View all authors</a>
 </body>
 </html>

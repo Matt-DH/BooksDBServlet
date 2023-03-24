@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.mattdh.booksdbservlet.Book" %>
+<%@ page import="com.mattdh.booksdbservlet.Author" %>
 <%--
   Created by IntelliJ IDEA.
   User: mattd
@@ -25,6 +26,7 @@ Book dump!
         <th>Title</th>
         <th>Edition</th>
         <th>Copyright</th>
+        <th>Authors</th>
     </tr>
 
     <%
@@ -34,6 +36,9 @@ Book dump!
             out.println("<td>" + book.getTitle() + "</td>");
             out.println("<td>" + book.getEditionNumber() + "</td>");
             out.println("<td>" + book.getCopyright() + "</td>");
+            for (Author author : book.getAuthorList()) {
+                out.println("<td>" + author.getAuthorID() + " " + author.getFirstName() + " " + author.getLastName() + "</td>");
+            }
             out.println("</tr>");
         }
     %>

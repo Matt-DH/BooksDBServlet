@@ -18,5 +18,6 @@
         <servlet-name>libraryData</servlet-name>
         <url-pattern>/titles_add</url-pattern>
         <url-pattern>/authors_add</url-pattern>
+        <url-pattern>/library-data</url-pattern>
     </servlet-mapping>
 </web-app>

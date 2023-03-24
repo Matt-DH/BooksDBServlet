@@ -26,50 +26,42 @@ public class LibraryData extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        //String view = request.getParameter("view");
-
+        try {
+            Class.forName(DBConfiguration.MARIA_DB_DRIVER_NAME);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        response.setContentType("text/html");
+        String view = request.getParameter("view");
         Library library = BookDatabaseManager.loadLibrary();
 
-        request.setAttribute("bookList", library.getBookList());
-        request.setAttribute("authorList", library.getAuthorList());
+        System.out.println("TEST MSG: INSIDE DOGET");
 
-//        if (view.equals("author_view")) {
-//
-//            System.out.println("CASE: AUTHOR VIEW");
-//
-//            try {
-//                List<Author> authorList = library.getAuthorList();
-//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("a2/viewallbooks.jsp");
-//                request.setAttribute("authorlist", authorList);
-//                requestDispatcher.forward(request, response);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-//
-//        if (view.equals("book_view")) {
-//
-//            System.out.println("CASE: BOOK VIEW");
-//
-////                List<Book> bookList = null;
-////                try {
-////                    Library library = new Library();
-////                    bookList = library.getBookList();
-////                    RequestDispatcher rd = request.getRequestDispatcher("booksdbservlet/book_view.jsp");
-////                    request.setAttribute("bookList", bookList);
-////                    rd.forward(request, response);
-////                } catch (Exception e) {
-////                    e.printStackTrace();
-////                }
-//
-//        }
+        if (view.equals("book_view")) {
+            System.out.println("TEST MSG: INSIDE VIEW EQUALS BOOK");
+            List<Book> bookList = library.getBookList();
+            RequestDispatcher rd = request.getRequestDispatcher("book_view.jsp");
+            request.setAttribute("bookList", bookList);
+            rd.forward(request, response);
+        }
+
+        if (view.equals("author_view")) {
+            System.out.println("TEST MSG: INSIDE VIEW EQUALS AUTHOR");
+            List<Author> authorList = library.getAuthorList();
+            RequestDispatcher rd = request.getRequestDispatcher("author_view.jsp");
+            request.setAttribute("authorList", authorList);
+            rd.forward(request, response);
+        }
     }
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Class.forName(DBConfiguration.MARIA_DB_DRIVER_NAME);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         System.out.println("TEST MSG: POST REQUEST RECEIVED");
 

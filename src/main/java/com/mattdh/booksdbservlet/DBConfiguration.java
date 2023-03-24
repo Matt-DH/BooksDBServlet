@@ -74,7 +74,6 @@ public class DBConfiguration {
     public static Connection getBookDBConnection() {
         Connection connection = null;
         try {
-            doRegisterDriverMethodRegistration();
             connection = DriverManager.getConnection(DBConfiguration.DB_URL + DBConfiguration.DB_BOOKS, DBConfiguration.DB_USER, DBConfiguration.DB_PASSWORD);
         } catch (SQLException e) {
             System.out.println("SQL EXCEPTION");
